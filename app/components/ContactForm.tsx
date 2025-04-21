@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "@/firebase/firebase";
+import { v4 as uuidv4 } from "uuid";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +12,10 @@ const ContactForm = () => {
     subject: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
+    null
+  );
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -20,10 +27,31 @@ const ContactForm = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Add backend integration here
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const docRef = await addDoc(collection(db, "contacts"), {
+        ...formData,
+        id: uuidv4(),
+        timestamp: new Date().toISOString(),
+      });
+
+      setSubmitStatus("success");
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -37,6 +65,16 @@ const ContactForm = () => {
         </div>
 
         <div className="max-w-3xl mx-auto">
+          {submitStatus === "success" && (
+            <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg">
+              Thank you for your message! I'll get back to you soon.
+            </div>
+          )}
+          {submitStatus === "error" && (
+            <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">
+              There was an error submitting your message. Please try again.
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -114,9 +152,14 @@ const ContactForm = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
+                disabled={isSubmitting}
+                className={`bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 ${
+                  isSubmitting
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:bg-blue-700"
+                }`}
               >
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
             </div>
 
