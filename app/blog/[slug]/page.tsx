@@ -7,9 +7,12 @@ import Footer from "@/app/components/Footer";
 import { blogPosts } from "../manifest";
 import Head from "next/head";
 import type { Metadata } from "next";
+
 // Generate static params for all blog posts
 export async function generateStaticParams() {
-  return blogPosts.map((blogs) => blogs.slug);
+  return blogPosts.map((post) => ({
+    slug: post.slug,
+  }));
 }
 
 async function readHTML(path: string) {
