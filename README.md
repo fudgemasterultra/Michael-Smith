@@ -1,36 +1,148 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Michael Smith Website
 
-## Getting Started
+A modern, statically generated personal website and blog built with Next.js 14 and deployed via Firebase Hosting.
 
-First, run the development server:
+## 🚀 Features
+
+- **Static Site Generation**: Pre-rendered pages for optimal performance
+- **Modern Tech Stack**: Next.js 14, TypeScript, React 18, and TailwindCSS
+- **HTML-based Blog**: Simple and flexible content management using HTML files
+- **SEO Optimized**: Dynamic metadata generation for each page
+- **Responsive Design**: Mobile-first approach with TailwindCSS
+- **Firebase Hosting**: Global CDN distribution for fast loading times
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 14
+- **Language**: TypeScript
+- **UI Library**: React 18
+- **Styling**: TailwindCSS
+- **Hosting**: Firebase
+- **Content Management**: HTML files with TypeScript manifest
+
+## 📁 Project Structure
+
+```
+├── app/                    # Next.js app directory
+│   ├── components/        # Reusable React components
+│   ├── blog/             # Blog section with dynamic routing
+│   │   ├── [slug]/      # Dynamic route for blog posts
+│   │   └── manifest.ts  # Blog post metadata
+│   ├── layout.tsx       # Root layout
+│   └── page.tsx         # Homepage
+├── content/              # Content directory
+│   └── blog/            # HTML blog post files
+├── public/              # Static assets
+└── firebase/           # Firebase configuration
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or later)
+- npm or yarn
+- Firebase CLI (for deployment)
+
+### Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/michael-smith-website.git
+cd michael-smith-website
+```
+
+2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📝 Content Management
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Adding a New Blog Post
 
-## Learn More
+1. Create a new HTML file in `/content/blog/` with your post content
+2. Add the post metadata to `app/blog/manifest.ts`:
 
-To learn more about Next.js, take a look at the following resources:
+```typescript
+{
+  slug: "your-post-slug",
+  title: "Your Post Title",
+  date: "MM/DD/YYYY",
+  excerpt: "Brief description of your post",
+  type: "blog" | "work",
+  headerImage: "/path-to-image.jpg",
+  metaDescription: "SEO description",
+  shareDescription: "Social media description",
+  shareImage: "/path-to-share-image.jpg",
+  readTime: "X min read",
+  tags: ["tag1", "tag2"]
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The site is deployed using Firebase Hosting. To deploy:
 
-## Deploy on Vercel
+1. Build the project
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run build
+# or
+yarn build
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Deploy to Firebase
+
+```bash
+firebase deploy
+```
+
+## 🔧 Development Workflow
+
+1. Create/update content in `/content/blog/`
+2. Update metadata in `manifest.ts`
+3. Test locally with `npm run dev`
+4. Build and deploy to Firebase
+
+## 🛡️ Security
+
+- Static site generation reduces attack surface
+- No server-side code execution in production
+- Firebase security rules for hosting
+- HTML content sanitization through React
+
+## 📈 Performance
+
+- Static generation for fast page loads
+- TailwindCSS for optimized CSS
+- Firebase CDN for global distribution
+- Next.js image optimization
+- Pre-rendered HTML content
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📞 Contact
+
+Michael Smith - me@michaellynnsmith.com
+Phone - 276-285--9430
