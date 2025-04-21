@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { blogPosts } from "../blog/manifest";
 
 const previews = blogPosts.slice(blogPosts.length - 3, blogPosts.length);
@@ -55,12 +56,12 @@ const BlogPreview = () => {
         </div>
 
         <div className="text-center mt-12">
-          <a
-            href="#"
+          <Link
+            href="/blog"
             className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
           >
             View All Posts
-          </a>
+          </Link>
         </div>
       </div>
     </section>

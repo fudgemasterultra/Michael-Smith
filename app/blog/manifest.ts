@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "house-autry-shopify-customization",
     title: "House Autry Shopify Customization",
-    date: "2024-03-20",
+    date: "02/20/2025",
     excerpt:
       "I recently had the opportunity to contribute to House Autry's website, focusing on enhancing their Food Servicesection and building out new functionality within their existing Shopify setup.",
     headerImage: "/blog-images/house-autry-blog/house-autry-main.png",
@@ -48,7 +48,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "scott-county-tourism-kiosk",
     title: "Scott County Tourism Kiosk",
-    date: "2024-03-20",
+    date: "2024/03/20",
     excerpt:
       "Discover how I helped build a wheelchair-accessible tourism kiosk for Scott County, VA using Flutter and Android. Features include e-postcards, travel guide downloads, and live event syncing with WordPress.",
     headerImage: "/blog-images/scott-county/opening-page.png",
